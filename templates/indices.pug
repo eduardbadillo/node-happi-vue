@@ -1,0 +1,25 @@
+.mdl-selectfield.mdl-js-selectfield
+  select(id="es_indices_select" onchange="get_index_mapping()").mdl-selectfield__select
+    option(value="")
+    for index in indices
+      option(value=index.index)= index.index
+  //- label(for="es_indices_select").mdl-selectfield__label Select an index
+
+
+h2 Indices info
+table(style="width: 100%").mdl-data-table.mdl-js-data-table
+  thead
+    th.mdl-data-table__cell--non-numeric Index
+    th.mdl-data-table__cell--non-numeric Health
+    th.mdl-data-table__cell--non-numeric Status
+    th.mdl-data-table__cell--non-numeric Size
+    th Documents
+  tbody
+    for index in indices
+      tr
+        td.mdl-data-table__cell--non-numeric= index.index
+        td.mdl-data-table__cell--non-numeric= index.health
+        td.mdl-data-table__cell--non-numeric= index.status
+        td.mdl-data-table__cell--non-numeric= index["store.size"]
+        td= index["docs.count"]
+

@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+  node-hapi-vue:
+    image: node-hapi-vue
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+      - 9229:9229
+    ## set your startup file here
+    # command: node --inspect app.js
+    command: nodemon -L -e pug,js --inspect index.js
+    volumes:
+      - .:/usr/src/app
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.0.0
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+
+volumes:
+  esdata1:
+    driver: local

@@ -1,0 +1,40 @@
+extends base
+block title
+  title Elasticsearch
+
+block content
+  #app.mdl-layout.mdl-js-layout
+    header.mdl-layout__header
+      .mdl-layout-icon
+      .mdl-layout__header-row
+        span.mdl-layout_title Simple layout
+        .mdl-layout-spacer
+        nav.mdl-navigation
+          a(href="#").mdl-navigation__link Link 1
+          a(href="#").mdl-navigation__link Link 2
+          a(href="#").mdl-navigation__link Link 3
+    div.mdl-layout__drawer
+      span.mdl-layout__title Simple layout
+      nav.mdl-navigation
+        a(href="#").mdl-navigation__link Link 1
+        a(href="#").mdl-navigation__link Link 2
+        a(href="#").mdl-navigation__link Link 3
+    main.mdl-layout-content
+      .mdl-grid
+        div(style="text-align: center").mdl-cell.mdl-cell--4-col.mdl-cell--4-offset
+          h2 Endpoint
+      .mdl-grid
+        div(style="width: 100%").mdl-textfield.mdl-js-textfield
+          input(type="text" id="endpoint" @change="cat_indices").mdl-textfield__input
+          label(for="endpoint").mdl-textfield__label Endpoint
+
+      .mdl-grid
+        #index_mappings(style="width: 100%")
+
+      .mdl-grid
+        #es_response(style="width: 100%")
+
+block script
+  script
+    | function handle_cat_indices(res){ document.getElementById('es_response').innerHTML = res.data}
+    | function handle_indx_mappings(res){ document.getElementById('index_mappings').innerHTML = res.data}

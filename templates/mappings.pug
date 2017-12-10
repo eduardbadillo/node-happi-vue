@@ -1,0 +1,11 @@
+ul
+  for types in mappings[indx_name]
+    for indx_type in Object.keys(types)
+      li= indx_type
+      ul
+        for prop in types[indx_type]
+          for p in Object.keys(prop)
+            li= p + " (" + prop[p]["type"] + ")"
+
+
+
